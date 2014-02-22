@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+	<head>
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="Inherit.js"></script>
+		<script src="Observer.js"></script>
+		<script src="Subject.js"></script>
+	</head>
+	<body>
+	</body>
+	<script>
+			/*************************** example1 ***************************/
+			var subjectButton = document.createElement("BUTTON"); //subject
+			var checkbox1 = document.createElement("INPUT"); //observers
+			var checkbox2 = document.createElement("INPUT");
+
+			subjectButton.innerHTML = "propagate an event";
+			subjectButton.style.width = '100px';
+			subjectButton.style.height = '50px';
+
+			checkbox1.type = 'checkbox';
+			checkbox2.type = 'checkbox';
+			            
+			Inherit(new Subject(), subjectButton);
+			subjectButton.onclick = function() {
+				subjectButton.notifyObserver(true);
+			};			
+			Inherit(new Observer(), checkbox1);
+			Inherit(new Observer(), checkbox2);
+
+			//redefine. paremeter could be a callback function or something
+			checkbox1.update = function(value) {
+			   	this.checked = value;
+			}
+			checkbox2.update = function(value) {
+			   	this.checked = value;
+			}
+			            
+			subjectButton.addObserver(checkbox1);
+			subjectButton.addObserver(checkbox2);
+
+			document.body.appendChild(subjectButton);
+			document.body.appendChild(checkbox1);			
+			document.body.appendChild(checkbox2);
+
+			/********************callback example *********************/
+			function testCallback(value, element) {
+				element.value = value;
+			}
+
+			var subjectButton2 = document.createElement("BUTTON"); //subject
+			var textbox1 = document.createElement("INPUT"); //observers
+			var textbox2 = document.createElement("INPUT");
+			var br = document.createElement("BR");
+
+			subjectButton2.id   = 'subjectButton2';
+			subjectButton2.innerHTML = "propagate an event with callback";
+			subjectButton2.style.width = '200px';
+			subjectButton2.style.height = '50px';
+
+			textbox1.type = 'text';
+			textbox2.type = 'text';
+			            
+			Inherit(new Subject(), subjectButton2);
+			subjectButton2.onclick = function() {
+				subjectButton2.notifyObserver(testCallback);
+			};
+			Inherit(new Observer(), textbox1);
+			Inherit(new Observer(), textbox2);
+
+			//redefine. paremeter could be a callback function or something
+			textbox1.update = function(callback) {
+			   	callback("testbox1", this);
+			}
+			textbox2.update = function(callback) {
+			   	callback("testbox2", this);
+			}
+			            
+			subjectButton2.addObserver(textbox1);
+			subjectButton2.addObserver(textbox2);
+
+			document.body.appendChild(br);
+			document.body.appendChild(subjectButton2);
+			document.body.appendChild(textbox1);			
+			document.body.appendChild(textbox2);
+		</script>
+</html>	
