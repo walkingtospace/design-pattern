@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+	<head>
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="../lib/common/Inherit.js"></script>
+		<script src="../lib/common/Interface.js"></script>
+		<script src="../lib/decorator/Decorator.js"></script>
+	</head>
+	<body>
+
+	</body>
+	<script>
+			/*************************** example1 ***************************/
+			var robotParts = [ "addRocket" , "addWings" , "addMissle" ];
+			var partsInterface = new Interface( "robotParts", robotParts );
+		
+			var Robot = function() {
+				this.body = "iron";
+				this.tank = "empty";
+			}	
+			Robot.prototype.addOilTank = function() {
+				alert("addOilTank");
+			}
+			Inherit(partsInterface, Robot);
+			
+			var robotInstance = new Robot();
+			Decorator(robotInstance, partsInterface);
+			
+			
+	</script>
+</html>	
