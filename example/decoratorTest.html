@@ -10,35 +10,85 @@
 
 	</body>
 	<script>
-			/*************************** example1 ***************************/
-			var robotMethods = [ "fireRocket" , "flyWithWings" , "scanSearch" ];
-			var robotInterface = new Interface( "robotFunctions", robotMethods );
-		
-			var Robot = function() {
-
-			}
-
-			//implementation robotparts interface
-			Robot.prototype = {
-				fireRocket : function() {
-
-				},
-				flyWithWings : function() {
-
-				},
-				scanSearch : function() {
-
-				}
-			}
-
-			var CaseDecorator = function( object ){
-				this.object = object;
+			/*************************** example ***************************/
+			var interfaceMethods = [ "fireRocket", "flyWithWings", "releaseGas", "getPower" ];
+			var Robot = new Interface( "Robot", interfaceMethods );
+			 
+			 //interface implementation class
+			var robotClass = function(){
 			};
+			var methodImplements = [
+				{	
+					fireRocket : function() {
+						return "rocket";
+					}
+				},
+			  	{	
+			  		flyWithWings : function() {
+						return "fly with wings";
+					}
+				},
+				{	
+					releaseGas : function() {
+						return "release gas";
+					}
+				},
+				{	
+					getPower : function() {
+						return 900;
+					}
+				}
+			];
+			Interface.implementInterface( robotClass, methodImplements );
 
-			var robotInstance = new Robot();
-			var decoratedMacbookPro = new CaseDecorator( robotInstance );
+			//decoration fireRocket(), getPower()
+			methodImplements = [
+				{
+					fireRocket: function(){
+					    return this.object.fireRocket() + " fire! ";
+					},
+					flyWithWings: function(){
+					    return this.object.flyWithWings();
+					},
+					releaseGas: function(){
+					    return this.object.releaseGas();
+					},
+					getPower: function() {
+						return this.object.getPower() + 300;
+					}
+				}
+			];
+			var rocketDecorator = createDecorator( Robot, methodImplements ); //return abstract decorator class 
+			
+			//decoration fireRocket();
+			methodImplements = [
+				{
+					fireRocket: function(){
+					    return this.object.fireRocket() + " with power up!!";
+					},
+					flyWithWings: function(){
+					    return this.object.flyWithWings();
+					},
+					releaseGas: function(){
+					    return this.object.releaseGas();
+					},
+					getPower: function() {
+						return this.object.getPower();
+					}
+				}
+			];
+			var rocketPowerDecorator = createDecorator( Robot, methodImplements ); //return abstract decorator class 
+			
+			// Instance of the Robot class
+			var robotInstance = new robotClass();
+			console.log( robotInstance.fireRocket() );
 
-			//Decorator(robot, robotInterface);
+			//decorate the Robot class
+			robotInstance = new rocketDecorator( robotInstance );
+			console.log( robotInstance.fireRocket() );
 
+			//decorate the Robot class
+			robotInstance = new rocketPowerDecorator( robotInstance );
+			console.log( robotInstance.fireRocket() );
 	</script>
 </html>	
