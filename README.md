@@ -6,6 +6,9 @@ Pattern list:
 ----
 - Observer
 - Decorator
+- Singleton
+- Factory
+.. will be updated soon
 
 Prerequisites
 ----
