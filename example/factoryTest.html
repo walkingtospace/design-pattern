@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+	<head>
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="../lib/factory/abstractFactory.js"></script>
+		<script>
+				/*************************** example ***************************/
+				var car, truck;
+
+				function Car( options ) {
+				  	this.doors = options.doors || 4;
+				  	this.state = options.state || "brand new";
+				  	this.color = options.color || "silver";
+				}
+				 
+				function Truck( options){
+				  	this.state = options.state || "used";
+				  	this.wheelSize = options.wheelSize || "large";
+				  	this.color = options.color || "blue";
+				}
+
+				(function(){
+					// Usage:
+					abstractFactory.registerItem( "car", Car );
+					abstractFactory.registerItem( "truck", Truck );
+					 
+					car = abstractFactory.getItem( "car" , {
+							color: "lime green",
+							state: "like new" 
+						} 
+					);
+					 
+					truck = abstractFactory.getItem( "truck" , {
+							wheelSize: "medium",
+							color: "neon yellow" 
+						} 
+					);
+				})();
+		</script>
+	</head>
+	<body>
+	</body>
+</html>	
