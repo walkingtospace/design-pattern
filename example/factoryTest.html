@@ -13,7 +13,7 @@
 				  	this.color = options.color || "silver";
 				}
 				 
-				function Truck( options){
+				function Truck( options ){
 				  	this.state = options.state || "used";
 				  	this.wheelSize = options.wheelSize || "large";
 				  	this.color = options.color || "blue";
@@ -21,9 +21,14 @@
 
 				(function(){
 					// Usage:
+					Car.prototype.drive = "possible";
+					Car.prototype.breakDown = "a bit";
+
+					//Enroll class interfaces
 					abstractFactory.registerItem( "car", Car );
 					abstractFactory.registerItem( "truck", Truck );
 					 
+					//get instances of clases by options
 					car = abstractFactory.getItem( "car" , {
 							color: "lime green",
 							state: "like new" 
@@ -35,6 +40,12 @@
 							color: "neon yellow" 
 						} 
 					);
+
+					//print output
+					console.log(car);
+					console.log(truck);
+
+					//'car' object would be registered, 'truck' object wouldn't be registerted because truck do not have prototype.drive, breakDown.
 				})();
 		</script>
 	</head>
