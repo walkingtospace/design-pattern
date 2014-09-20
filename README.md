@@ -20,6 +20,4 @@ Usage
 
 Example
 ----
-- /example/decoratorTest.html
-- /example/factoryTest.html
-- /example/observerTest.html
+- check /example/xxxxxTest.html
