@@ -20,6 +20,6 @@ Usage
 
 Example
 ----
-/example/decoratorTest.html
-/example/factoryTest.html
-/example/observerTest.html
+- /example/decoratorTest.html
+- /example/factoryTest.html
+- /example/observerTest.html
