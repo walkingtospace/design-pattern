@@ -1,6 +1,6 @@
 Design Pattern Package
 ========
-implement design patterns by javascript on the basis of the GOF design pattern book.
+Design pattern libraries for learning OOP with Javascript, based on the GOF book
 
 Pattern list:
 ----
@@ -20,3 +20,4 @@ Usage
 
 Example
 ----
+- check /example/xxxxxTest.html
