@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+	<head>
+		<title></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script src="../lib/prototype/Prototype.js"></script>
+	</head>
+	<body>
+
+	</body>
+	<script>
+			/*************************** example ***************************/
+			var coffeePrototype = {
+				cost : null,
+
+				init: function(type) {
+					if(type === "americano") {
+						this.cost = 2.75;
+					} else if(type === "milk") {
+						this.cost = 2.83;
+					} else {
+						this.cost = 0;
+					}
+				},
+
+				getCost : function() {
+					return this.cost;
+				}
+			};
+
+			var coffeeInstance = createInstance(coffeePrototype); //create instance of coffeePrototype class.
+			console.log(coffeeInstance.getCost());
+	</script>
+</html>	
