@@ -7,6 +7,7 @@ Pattern list:
 - Observer
 - Decorator
 - Factory
+- Prototype
 
 Prerequisites
 ----
